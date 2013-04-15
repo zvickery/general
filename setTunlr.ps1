@@ -1,5 +1,10 @@
+# Powershell script to toggle tunlr DNS.  Needs to be run as administrator.
+# zdv 2013-04-13
+
+# Prompt for enable/disable action
 Param ([string]$enable = $( Read-Host "[E]nable or [d]isable tunlr?" ))
 
+# Set the DNS servers for the supplied adapter
 Function SetDnsForAdapter ($adapter, $servers)
 {
     $retVal = $adapter.SetDNSServerSearchOrder($servers).ReturnValue
@@ -10,6 +15,7 @@ Function SetDnsForAdapter ($adapter, $servers)
     }
 }
 
+# Set system DNS based on enabling/disabling tunlr.
 Function SetDns ($enable)
 {
     $adapters = Get-WmiObject win32_networkadapterconfiguration -filter "ipenabled = 'true'"
@@ -25,6 +31,7 @@ Function SetDns ($enable)
     }
 }
 
+# Script body
 Try
 {
     SetDns ($enable -ieq "e")
