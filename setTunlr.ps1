@@ -35,6 +35,7 @@ Function SetDns ($enable)
 Try
 {
     SetDns ($enable -ieq "e")
+    ipconfig /flushdns | Out-Null
     Write-Output "Success!"
     Start-Process -FilePath "http://tunlr.net/status/"
 }
