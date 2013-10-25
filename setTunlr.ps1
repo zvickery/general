@@ -25,7 +25,7 @@ Function SetDns ($enable)
         $serverList = $null
         if ($enable)
         {
-            $serverList = "192.95.16.109","142.54.177.158"
+            $serverList = "69.197.169.9","192.95.16.109"
         }
         SetDnsForAdapter $adapter $serverList
     }
